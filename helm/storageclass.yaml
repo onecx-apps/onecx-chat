@@ -1,0 +1,12 @@
+# storage-class.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: genai-gp2
+provisioner: k8s.io/no-provisioner
+reclaimPolicy: Retain  # This is set to Retain
+parameters:
+  fsType: ext4
+  type: gp2
+provisioner: kubernetes.io/aws-ebs
+volumeBindingMode: WaitForFirstConsumer

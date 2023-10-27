@@ -1,0 +1,25 @@
+annotations:
+  artifacthub.io/category: database
+  artifacthub.io/changes: "- kind: fixed\n  description: Propagate signals in init
+    script correctly to entrypoint\n  links:\n      - name: Github Issue\n        url:
+    https://github.com/qdrant/qdrant-helm/pull/91   \n- kind: added\n  description:
+    Make annotations for the ServiceAccount configurable\n  links:\n      - name:
+    Github Issue\n        url: https://github.com/qdrant/qdrant-helm/pull/92\n- kind:
+    added\n  description: Update Qdrant to v1.6.1\n"
+apiVersion: v2
+appVersion: v1.6.1
+description: Qdrant - Vector Database for the next generation of AI applications.
+home: https://qdrant.tech
+icon: https://qdrant.github.io/qdrant-helm/logo_with_text.svg
+keywords:
+- vector database
+maintainers:
+- email: info@qdrant.com
+  name: qdrant
+  url: https://github.com/qdrant
+name: qdrant
+sources:
+- https://github.com/qdrant/qdrant
+- https://github.com/qdrant/qdrant-helm
+type: application
+version: 0.6.1

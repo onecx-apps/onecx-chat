@@ -1,0 +1,51 @@
+replicas: 1
+
+deployment:
+  image: ghcr.io/chenhunghan/ialacol:latest
+  # or use CUDA image `ghcr.io/chenhunghan/ialacol-cuda12:latest`
+  # env:
+    # DEFAULT_MODEL_HG_REPO_ID: TheBloke/Llama-2-7B-Chat-GGML
+    # DEFAULT_MODEL_HG_REPO_REVISION: main
+    # DEFAULT_MODEL_FILE: llama-2-7b-chat.ggmlv3.q4_0.bin
+    # LOGGING_LEVEL: DEBUG
+resources:
+  {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# The volume where we store the models and downloaded file cachehelm lint
+model:
+  persistence:
+    size: 24Gi
+    accessModes:
+      - ReadWriteOnce
+    # Optional. e.g. "gp2-unencrypted"
+    storageClassName: genai-gp2
+
+service:
+  type: LoadBalancer
+  port: 8000
+  annotations: {}
+  # If using an AWS load balancer, you'll need to override the default 60s load balancer idle timeout
+  # service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "1200"
+nodeSelector: {}
+tolerations: []
+  # e.g.
+  # - key: "ai"
+  #   operator: "Exists"
+  #   effect: "NoSchedule"
+affinity: 
+  # e.g.
+   nodeAffinity:
+     requiredDuringSchedulingIgnoredDuringExecution:
+       nodeSelectorTerms:
+       - matchExpressions:
+         - key: topology.kubernetes.io/zone
+           operator: In
+           values:
+           - us-east-1a
+           - us-east-1b
