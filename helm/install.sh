@@ -16,9 +16,17 @@ helm install llama2 -n genai --create-namespace ./llama2
 #install qdrant
 helm install qdrant -n genai --create-namespace ./qdrant
 
+
 #update route 53 to loadbalancers 
+https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z04691503R1QKP3NPCK74
+
 
 #check connection
 http://llama2.one-cx.org:8000/
 
 http://qdrant.one-cx.org:6333/
+
+#update scale up and down lambdas with cluster policy
+add policy "genai-dev-admin-policy" to 
+https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleUp-role-6zjp1ufz?section=permissions
+https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleDown-role-rzktzgl7?section=permissions
