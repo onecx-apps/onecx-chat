@@ -14,6 +14,6 @@ spec:
     - ReadWriteOnce
   awsElasticBlockStore:
     fsType: ext4
-    volumeID: vol-0760ead8d7d835ff3    
+    volumeID: vol-094bb176c1c9e36d2    
   storageClassName: genai-gp2
   persistentVolumeReclaimPolicy: Delete  
