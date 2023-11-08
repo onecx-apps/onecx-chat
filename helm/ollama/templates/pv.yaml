@@ -1,0 +1,19 @@
+# persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ollama-pv
+  labels:
+    topology.kubernetes.io/region: us-east-1
+    topology.kubernetes.io/zone: us-east-1a
+spec:
+  capacity:
+    storage: 24Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    fsType: ext4
+    volumeID: vol-04bc60271cd6396d1   
+  storageClassName: genai-gp2
+  persistentVolumeReclaimPolicy: Delete  

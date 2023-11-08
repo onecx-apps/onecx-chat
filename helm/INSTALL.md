@@ -12,6 +12,8 @@ kubectl apply -f storageclass.yaml
 
 #install llama2
 helm install llama2 -n genai --create-namespace ./llama2
+or
+helm install ollama -n genai --create-namespace ./ollama
 
 #install qdrant
 helm install qdrant -n genai --create-namespace ./qdrant
