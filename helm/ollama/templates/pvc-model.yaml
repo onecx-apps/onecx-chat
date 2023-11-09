@@ -8,6 +8,7 @@ spec:
   storageClassName: {{ .Values.model.persistence.storageClassName }}
   {{- end }}
   accessModes: {{ .Values.model.persistence.accessModes }}
+  volumeName: {{ .Release.Name }}-pv
   resources:
     requests:
       storage: {{ .Values.model.persistence.size | quote }}
