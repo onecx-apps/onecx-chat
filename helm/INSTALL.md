@@ -21,6 +21,9 @@ helm install qdrant -n genai --create-namespace ./qdrant
 #install onecx-chat-svc
 helm install onecx-chat-svc -n genai --create-namespace ./onecx-chat-svc
 
+#install onecx-chat-ui
+helm install onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
+
 #update route 53 to loadbalancers 
 https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z04691503R1QKP3NPCK74
 
@@ -29,6 +32,10 @@ https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z
 http://llama2.one-cx.org:8000/
 
 http://qdrant.one-cx.org:6333/
+
+http://chat-svc.one-cx.org/
+
+http://chat-ui.one-cx.org/
 
 #update scale up and down lambdas with cluster policy
 add policy "genai-dev-admin-policy" to 
