@@ -48,6 +48,8 @@ add policy "genai-dev-admin-policy" to
 https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleUp-role-6zjp1ufz?section=permissions
 https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleDown-role-rzktzgl7?section=permissions
 
+#set right clusterName in code of both (genaiScaleUp and genaiScaleDown Lambdas)
+
 
 #set permission to access s3 bucket for document embedding
 add AmazonS3ReadOnlyAccess (or AmazonS3FullAccess) to genai-dev-eks-nodegroup-role role
