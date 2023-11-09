@@ -44,7 +44,6 @@ spec:
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
           {{- end }}              
-
           livenessProbe:
             httpGet:
               path: /
@@ -63,6 +62,10 @@ spec:
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", {{ .Values.postInstallCmd }}]            
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

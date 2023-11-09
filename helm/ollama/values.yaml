@@ -17,6 +17,8 @@ fullnameOverride: ""
 # Define environment variables
 env: []
 
+#postInstallCmd: "ollama run llama2"
+postInstallCmd: "ollama pull llama2"
 
 serviceAccount:
   # Specifies whether a service account should be created
