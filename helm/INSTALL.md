@@ -11,9 +11,11 @@ aws ec2 create-volume --availability-zone us-east-1a --size 10
 kubectl apply -f storageclass.yaml
 
 #install llama2
-helm install llama2 -n genai --create-namespace ./llama2
-or
 helm install ollama -n genai --create-namespace ./ollama
+or 
+helm install llama2 -n genai --create-namespace ./llama2
+
+
 
 #install qdrant
 helm install qdrant -n genai --create-namespace ./qdrant

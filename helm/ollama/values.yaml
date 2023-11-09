@@ -54,14 +54,14 @@ service:
       protocol: TCP
 
 livenessProbe:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 60
   periodSeconds: 5
   timeoutSeconds: 1
   failureThreshold: 6
   successThreshold: 1
 
 readinessProbe:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 60
   periodSeconds: 5
   timeoutSeconds: 1
   failureThreshold: 6
