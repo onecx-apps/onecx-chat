@@ -24,9 +24,9 @@ env:
   - name: QDRANT_PORT
     value: "6333"
   - name: LLAMA_URL
-    value: "llama2"
+    value: "ollama"
   - name: LLAMA_PORT
-    value: "8000"
+    value: "80"
   - name: DOCUMENTS_BUCKET
     value: "onecx-chat-documents"
 

@@ -11,20 +11,20 @@ aws ec2 create-volume --availability-zone us-east-1a --size 10
 kubectl apply -f storageclass.yaml
 
 #install llama2
-helm install ollama -n genai --create-namespace ./ollama
+helm upgrade --install --force ollama -n genai --create-namespace ./ollama
 or 
-helm install llama2 -n genai --create-namespace ./llama2
+helm upgrade --install --force llama2 -n genai --create-namespace ./llama2
 
 
 
 #install qdrant
-helm install qdrant -n genai --create-namespace ./qdrant
+helm upgrade --install --force qdrant -n genai --create-namespace ./qdrant
 
 #install onecx-chat-svc
-helm install onecx-chat-svc -n genai --create-namespace ./onecx-chat-svc
+helm upgrade --install --force onecx-chat-svc -n genai --create-namespace ./onecx-chat-svc
 
 #install onecx-chat-ui
-helm install onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
+helm upgrade --install --force onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
 
 #update route 53 to loadbalancers 
 https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z04691503R1QKP3NPCK74
