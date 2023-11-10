@@ -52,6 +52,6 @@ https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleDow
 
 
 #set permission to access s3 bucket for document embedding
-add AmazonS3ReadOnlyAccess (or AmazonS3FullAccess) to genai-dev-eks-nodegroup-role role
+add AmazonS3ReadOnlyAccess (or AmazonS3FullAccess) and AmazonRoute53FullAccess to genai-dev-eks-nodegroup-role role
 
 
