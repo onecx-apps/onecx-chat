@@ -30,7 +30,7 @@ helm upgrade --install --force onecx-chat-svc -n genai --create-namespace ./onec
 #install onecx-chat-ui
 helm upgrade --install --force onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
 
-#update route 53 to loadbalancers 
+#update route 53 to loadbalancers for qdrant and ollama if required
 https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z04691503R1QKP3NPCK74
 
 
