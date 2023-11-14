@@ -5,12 +5,12 @@
 replicaCount: 1
 
 image:
-#  repository: ghcr.io/onecx-apps/onecx-chat-svc
-  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-chat-svc
+  repository: ghcr.io/onecx-apps/onecx-chat-svc
+#  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-chat-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-#  tag: "main"
-  tag: "latest"
+  tag: "main"
+#  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -25,10 +25,14 @@ env:
     value: "qdrant"
   - name: QDRANT_PORT
     value: "6333"
-  - name: LLAMA_URL
+  - name: OLLAMA_URL
     value: "ollama"
-  - name: LLAMA_PORT
+  - name: OLLAMA_PORT
     value: "80"
+  - name: OLLAMA_MODEL
+    value: "emgerman_llama2"
+  - name: EMBEDDING_MODEL
+    value: "all-MiniLM-L6-v2"
   - name: DOCUMENTS_BUCKET
     value: "onecx-chat-documents"
 

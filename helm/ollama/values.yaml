@@ -5,19 +5,31 @@
 replicaCount: 1
 
 image:
+# gpu not working with default image ollama:ollama
   repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
+#  repository: ollama/ollama
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.1.9-gpu"
+#  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 # Define environment variables
-env: []
 
-postInstallCmd: "ollama pull llama2"
+env: []
+# gpu not working with default image ollama:ollama
+#  - name: PATH
+#    value: /usr/local/nvidia/bin:/usr/local/nvidia/lib64:/usr/bin:/usr/sbin:/bin:/sbin
+#  - name: LD_LIBRARY_PATH
+#    value: /usr/local/nvidia/lib64
+
+
+postInstallCmd: "huggingface-cli download TheBloke/em_german_13b_v01-GGUF em_german_13b_v01.Q4_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False && ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile"
+
+#postInstallCmd: "ollama pull llama2"
 #postInstallCmd: "ollama pull falcon:40b-instruct-q4_1" 
 
 serviceAccount:
