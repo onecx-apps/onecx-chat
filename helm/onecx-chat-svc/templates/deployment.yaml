@@ -45,15 +45,15 @@ spec:
               protocol: {{ .protocol }}
           {{- end }}              
 
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            successThreshold: {{ .Values.livenessProbe.successThreshold }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+#          livenessProbe:
+#            httpGet:
+#              path: /
+#              port: http
+#            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+#            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+#            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+#            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+#            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           readinessProbe:
             httpGet:
               path: /

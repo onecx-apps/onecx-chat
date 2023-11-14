@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: ollama/ollama
+  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "0.1.9-gpu"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -17,8 +17,8 @@ fullnameOverride: ""
 # Define environment variables
 env: []
 
-#postInstallCmd: "ollama run llama2"
 postInstallCmd: "ollama pull llama2"
+#postInstallCmd: "ollama pull falcon:40b-instruct-q4_1" 
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -55,7 +55,7 @@ service:
 
 livenessProbe:
   initialDelaySeconds: 60
-  periodSeconds: 5
+  periodSeconds: 30
   timeoutSeconds: 1
   failureThreshold: 6
   successThreshold: 1
@@ -106,7 +106,7 @@ autoscaling:
 # The volume where we store the models and downloaded file cachehelm lint
 model:
   persistence:
-    size: 24Gi
+    size: 100Gi
     accessModes:
       - ReadWriteOnce
     # Optional. e.g. "gp2-unencrypted"

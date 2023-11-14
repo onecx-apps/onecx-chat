@@ -38,7 +38,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env: 
             {{ toYaml .Values.env | nindent 12 }}
-#          args: ["--gpus=all"]
           ports:
           {{- range .Values.service.ports }}
             - name: {{ .name }}

@@ -5,10 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/onecx-apps/onecx-chat-svc
+#  repository: ghcr.io/onecx-apps/onecx-chat-svc
+  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-chat-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "main"
+#  tag: "main"
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -65,9 +67,9 @@ service:
 
 livenessProbe:
   initialDelaySeconds: 5
-  periodSeconds: 5
-  timeoutSeconds: 1
-  failureThreshold: 6
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 10
   successThreshold: 1
 
 readinessProbe:
