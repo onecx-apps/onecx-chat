@@ -166,3 +166,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+hooks:
+  postInstall:
+    enabled: true
+  hostedZoneId: "Z04691503R1QKP3NPCK74"
+  recordSetName: "ollama.one-cx.org"
+  namespace: "genai"
+  releaseName: "ollama"
+  region: "us-east-1"
+  loadBalancerHostedZoneId: "Z35SXDOTRQ7X7K"

@@ -1,0 +1,77 @@
+# mychart/templates/post-install-hook.yaml
+{{- if .Values.hooks.postInstall.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-post-install-hook"
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    "helm.sh/hook": "post-install"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ include "ollama.serviceAccountName" . }}
+      containers:
+        - name: update-route53
+          image: amazon/aws-cli
+          imagePullPolicy: Always
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              
+              # Install AWS CLI using curl
+              curl -O "https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.3/2023-11-02/bin/linux/amd64/kubectl" \
+              && chmod +x ./kubectl \
+              && mv ./kubectl /usr/local/bin/kubectl
+
+              HOSTED_ZONE_ID={{ .Values.hooks.hostedZoneId }}
+              RECORD_SET_NAME={{ .Values.hooks.recordSetName }}
+              NAMESPACE={{ .Values.hooks.namespace }}
+              RELEASE_NAME={{ .Values.hooks.releaseName }}
+              REGION={{ .Values.hooks.region }}
+              LB_HOSTED_ZONE_ID={{ .Values.hooks.loadBalancerHostedZoneId }}
+
+              
+              # Fetch the Load Balancer IP
+              attempt=0
+              while [ $attempt -lt 5 ]; do
+                LOAD_BALANCER_HOSTNAME=$(kubectl get services -n $NAMESPACE $RELEASE_NAME -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+                # Check if the IP is not empty
+                if [ -n "$LOAD_BALANCER_HOSTNAME" ]; then
+                  echo "Load Balancer IP: $LOAD_BALANCER_HOSTNAME"
+                  break  # Exit the loop if successful
+                else
+                  echo "Attempt $((attempt + 1)): Failed to retrieve Load Balancer HOSTNAME."
+                  attempt=$((attempt + 1))
+                  sleep 10  # Sleep for 10 seconds before the next attempt
+                fi
+              done
+
+              # If after 5 attempts it's still not available, exit with an error message
+              if [ -z "$LOAD_BALANCER_HOSTNAME" ]; then
+                echo "Error: Maximum attempts reached. Failed to retrieve Load Balancer HOSTNAME."
+                exit 1
+              fi              
+
+
+
+              # Fetch the Load Balancer IP
+              LOAD_BALANCER_HOSTNAME=$(kubectl get services -n $NAMESPACE $RELEASE_NAME -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+              # Check if the IP is not empty
+              if [ -n "$LOAD_BALANCER_HOSTNAME" ]; then
+                echo "Load Balancer IP: $LOAD_BALANCER_HOSTNAME"
+
+                # Update Route 53 record set
+                aws route53 change-resource-record-sets \
+                  --hosted-zone-id $HOSTED_ZONE_ID \
+                  --region $REGION \
+                  --change-batch "{\"Changes\": [{\"Action\": \"UPSERT\",\"ResourceRecordSet\": {\"Name\": \"$RECORD_SET_NAME\",\"Type\": \"A\",\"AliasTarget\": {\"DNSName\": \"$LOAD_BALANCER_HOSTNAME\",\"EvaluateTargetHealth\": false, \"HostedZoneId\": \"$LB_HOSTED_ZONE_ID\"}}}]}"
+              fi
+
+              exit 0
+
+      restartPolicy: OnFailure
+{{- end }}
