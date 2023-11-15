@@ -15,7 +15,7 @@ kubectl apply -f storageclass.yaml
 kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.2/nvidia-device-plugin.yml
 
 
-#install llama2
+#install ollama
 helm upgrade --install --force ollama -n genai --create-namespace ./ollama
 or 
 helm upgrade --install --force llama2 -n genai --create-namespace ./llama2
