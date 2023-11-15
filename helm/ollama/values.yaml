@@ -27,8 +27,28 @@ env: []
 #    value: /usr/local/nvidia/lib64
 
 
-postInstallCmd: "huggingface-cli download TheBloke/em_german_13b_v01-GGUF em_german_13b_v01.Q4_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False && ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile"
+postInstallCmd: |
+  #!/bin/sh
 
+  FILE_PATH=/root/.ollama/custom_model/em_german_13b_v01.Q4_K_M.gguf
+
+  # Check if the file exists
+  if [ -e "$FILE_PATH" ]; then
+    echo "File already exists. Skipping download."
+  else
+    # Download the file if it doesn't exist
+    huggingface-cli download TheBloke/em_german_13b_v01-GGUF em_german_13b_v01.Q4_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+    echo "File downloaded successfully."
+  fi
+
+  ollama rm emgerman_llama2
+  echo "Old model removed"
+
+  ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile
+  echo "Model created"
+
+
+#postInstallCmd: "huggingface-cli download TheBloke/em_german_13b_v01-GGUF em_german_13b_v01.Q4_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False && ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile"
 #postInstallCmd: "ollama pull llama2"
 #postInstallCmd: "ollama pull falcon:40b-instruct-q4_1" 
 
@@ -129,12 +149,17 @@ volumes:
   - name: ollama
     persistentVolumeClaim:
       claimName: ollama-model
+  - name: config-volume
+    configMap:
+      name: em-german-llama2-configmap      
 
 # Additional volumeMounts on the output Deployment definition. ollama:/root/.ollama
 volumeMounts:
   - name: ollama
     mountPath: "/root/.ollama"
 #    readOnly: true
+  - name: config-volume
+    mountPath: "/opt/llm"
 
 nodeSelector: {}
 

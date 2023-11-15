@@ -65,7 +65,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", {{ .Values.postInstallCmd }}]            
+                command: ["/bin/sh", "-c", {{ .Values.postInstallCmd | nindent 8 | quote }}]   
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
