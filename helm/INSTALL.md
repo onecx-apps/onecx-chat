@@ -1,18 +1,35 @@
-#create two ebs volumes and update pv.yaml´s -> volumeID if no volume exists already: 
-#llama2
+# create two ebs volumes and update pv.yaml´s -> volumeID if no volume exists already: 
+# llama2
 aws ec2 create-volume --availability-zone us-east-1a --size 24
-#qdrant
+# qdrant
 aws ec2 create-volume --availability-zone us-east-1a --size 10
 
 
-#take volume id and set it in pv.yaml files of llama2 and qdrant
+# take volume id and set it in pv.yaml files of llama2 and qdrant
 
-#install storage-class
+# install storage-class
 kubectl apply -f storageclass.yaml
 
 
-#enable GPU based workload - for version update check https://github.com/NVIDIA/k8s-device-plugin/releases
-kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.2/nvidia-device-plugin.yml
+# enable GPU based workload - for version update check https://github.com/NVIDIA/k8s-device-plugin/releases
+
+# kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.2/nvidia-device-plugin.yml
+
+helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
+helm repo update
+# gpu slicing config
+
+kubectl apply -f nvidia-device-plugin.yaml
+
+helm upgrade -i nvdp nvdp/nvidia-device-plugin \
+  --namespace kube-system \
+  -f nvdp-values.yaml \
+  --version 0.14.3 \
+  --set config.name=nvidia-device-plugin \
+  --force
+
+
+
 
 
 #install ollama
@@ -62,18 +79,13 @@ connect to node instance and run
 https://github.com/NVIDIA/k8s-device-plugin#running-gpu-jobs
 
 
-# in case nvidia container toolkit needs to be installed only!
-#option install  nvidia-container-toolkit for gpu support not required
-#sudo yum-config-manager --disable amzn2-nvidia
-#sudo yum remove -y libnvidia-container-1.4.0-1.amzn2.x86_64
-
-#curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | \
-#  sudo tee /etc/yum.repos.d/nvidia-container-toolkit.repo
-
-#sudo yum install -y nvidia-container-toolkit
-#???sudo yum-config-manager --enable amzn2-nvidia????
-
-#sudo nvidia-ctk runtime configure --runtime=containerd
-#sudo systemctl restart containerd
 
 
+
+
+# Scaling up and down the infrastructure
+https://zjwdcv4me1.execute-api.us-east-1.amazonaws.com/genaiScaleUp
+ 
+ 
+The server is getting  automatically scaled down at 15:50 and 17:50 every day or with manually with the following url
+https://zjwdcv4me1.execute-api.us-east-1.amazonaws.com/genaiScaleDown
