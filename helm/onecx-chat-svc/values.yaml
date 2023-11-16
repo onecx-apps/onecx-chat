@@ -30,7 +30,7 @@ env:
   - name: OLLAMA_PORT
     value: "80"
   - name: OLLAMA_MODEL
-    value: "emgerman_llama2"
+    value: "emgerman_mistral_leo"
   - name: EMBEDDING_MODEL
     value: "all-MiniLM-L6-v2"
   - name: DOCUMENTS_BUCKET

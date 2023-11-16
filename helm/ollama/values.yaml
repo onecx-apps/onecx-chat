@@ -45,11 +45,11 @@ postInstallCmd: |
   fi
 
   ollama rm emgerman_llama2
-  ollama rm em_leo_mistral
+  ollama rm emgerman_mistral_leo
   echo "Old models removed"
 
   #ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile
-  ollama create em_leo_mistral -f /opt/llm/em_leo_mistral_modelfile
+  ollama create emgerman_mistral_leo -f /opt/llm/em_leo_mistral_modelfile
   
   echo "Model created"
 

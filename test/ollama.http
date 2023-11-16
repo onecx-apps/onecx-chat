@@ -1,0 +1,54 @@
+@hostname = ollama.one-cx.org
+@port = 80
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+
+
+###
+# question = "Wer ist Mustafa?"
+POST http://{{host}}/api/generate HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "model": "emgerman_mistral_leo",
+  "prompt": "Du bist ein hilfreicher Assistent. Für die folgende Aufgabe stehen dir zwischen den tags BEGININPUT und ENDINPUT mehrere Quellen zur Verfügung. Metadaten zu den einzelnen Quellen wie Autor, URL o.ä. sind zwischen BEGINCONTEXT und ENDCONTEXT zu finden, danach folgt der Text der Quelle. Die eigentliche Aufgabe oder Frage ist zwischen BEGININSTRUCTION und ENDINCSTRUCTION zu finden. Beantworte diese aus den Quellen. Sollten diese keine Antwort enthalten, antworte, dass auf Basis der gegebenen Informationen keine Antwort möglich ist! USER: BEGININPUT\nBEGINCONTEXT\nENDCONTEXT\nandern Wert. Gleichwohl machte ihm die Mannigfaltigkeit der schönen Farben und die außerordentliche Größe und Schönheit der Früchte Lust, von jeglicher Sorte einige zu pflücken. Er nahm daher von jeder Farbe etliche, füllte damit seine beiden Taschen und zwei ganz neue Beutel, die der Zauberer ihm zugleich mit dem Kleide gekauft hatte; und da die beiden Beutel in seinen Taschen, die schon ganz voll waren, keinen Platz mehr hatten, so band er sie auf jeder Seite an seinen Gürtel. Einige von den Früchten hüllte er auch in die Falten seines Gürtels, der von dickem Seidenstoff und doppelt gefüttert war, und befestigte sie so, daß sie nicht herabfallen konnten; auch vergaß er nicht, etliche in den Busen zwischen Kleid und Hemd zu stecken. Nachdem er sich so, ohne es zu wissen, mit Reichtümern beladen hatte, trat Alaeddin schnell seinen Rückzug durch die drei Säle an; stieg da wieder hinauf, wo er herabgestiegen war, und zeigte sich am Eingang der Höhle, wo der Afrikaner ihn mit Ungeduld erwartete. Sobald ihn Alaeddin erblickte, rief er ihm zu: »Lieber Oheim, ich bitte dich, reich mir die Hand und hilf mir heraus.« – »Mein Sohn,« antwortete der afrikanische Zauberer, »gib mir zuvor die Lampe, sie könnte dir hinderlich sein.« – »Verzeih, lieber Oheim,« sagte Alaeddin, »sie hindert mich nicht; ich werde sie dir geben, sobald ich oben bin.« Der afrikanische Zauberer bestand darauf, daß Alaeddin ihm die Lampe einhändigen sollte, ehe er ihn aus der Höhle herauszöge, und Alaeddin, der die Lampe mit all den Früchten, die er zu sich gesteckt, verpackt hatte, weigerte sich durchaus, sie ihm zu geben, bevor er aus der Höhle wäre. Da geriet der afrikanische Zauberer vor Ärger über die Widerspenstigkeit des jungen Menschen in schreckliche Wut, warf etwas von seinem Rauchwerk in das Feuer, das er sorgfältig unterhalten hatte, und kaum hatte er zwei Zauberworte gesprochen, als der Stein, welcher als Deckel zur Eingangsöffnung der Höhle diente, sich von selbst wieder, nebst der Erde darüber, an seine Stelle rückte, so daß alles wieder in denselben Stand kam, wie vor der Ankunft des arabischen Zauberers und Alaeddins. Der afrikanische Zauberer war in der Tat kein Bruder des Schneiders Mustafa, wofür er sich ausgegeben hatte, und somit auch nicht Alaeddins Oheim. Er war wirklich aus Afrika gebürtig, und nachdem er sich etwa vierzig Jahre lang mit Zaubereien, mit der Punktierkunst, mit Räucheropfern und der Lektüre von Zauberbüchern beschäftigt hatte, war er endlich auf die Entdeckung gekommen, daß es eine Wunderlampe in der Welt gebe, deren Besitz ihn mächtiger als alle Könige der Erde machen würde. Aber obschon die Lampe sich ganz gewiß an dem bewußten Orte befand, so war es ihm doch nicht gestattet, sie selbst zu holen oder persönlich in das unterirdische Gewölbe einzutreten. Es mußte ein\nENDINPUT\nBEGININSTRUCTION Wer ist Mustafa? ENDINCSTRUCTION ASSISTANT:",
+  "raw": true,
+  "stream": false,
+  "options":{
+    "temperature": 0.1,
+    "top_k": 100
+  }
+}
+
+###
+# question = "Wer ist Mustafa?"
+POST http://{{host}}/api/generate HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "model": "llama2",
+  "prompt": "Du bist ein hilfreicher Assistent. Für die folgende Aufgabe stehen dir zwischen den tags BEGININPUT und ENDINPUT mehrere Quellen zur Verfügung. Metadaten zu den einzelnen Quellen wie Autor, URL o.ä. sind zwischen BEGINCONTEXT und ENDCONTEXT zu finden, danach folgt der Text der Quelle. Die eigentliche Aufgabe oder Frage ist zwischen BEGININSTRUCTION und ENDINCSTRUCTION zu finden. Beantworte diese aus den Quellen. Sollten diese keine Antwort enthalten, antworte, dass auf Basis der gegebenen Informationen keine Antwort möglich ist! USER: BEGININPUT\nBEGINCONTEXT\nENDCONTEXT\nandern Wert. Gleichwohl machte ihm die Mannigfaltigkeit der schönen Farben und die außerordentliche Größe und Schönheit der Früchte Lust, von jeglicher Sorte einige zu pflücken. Er nahm daher von jeder Farbe etliche, füllte damit seine beiden Taschen und zwei ganz neue Beutel, die der Zauberer ihm zugleich mit dem Kleide gekauft hatte; und da die beiden Beutel in seinen Taschen, die schon ganz voll waren, keinen Platz mehr hatten, so band er sie auf jeder Seite an seinen Gürtel. Einige von den Früchten hüllte er auch in die Falten seines Gürtels, der von dickem Seidenstoff und doppelt gefüttert war, und befestigte sie so, daß sie nicht herabfallen konnten; auch vergaß er nicht, etliche in den Busen zwischen Kleid und Hemd zu stecken. Nachdem er sich so, ohne es zu wissen, mit Reichtümern beladen hatte, trat Alaeddin schnell seinen Rückzug durch die drei Säle an; stieg da wieder hinauf, wo er herabgestiegen war, und zeigte sich am Eingang der Höhle, wo der Afrikaner ihn mit Ungeduld erwartete. Sobald ihn Alaeddin erblickte, rief er ihm zu: »Lieber Oheim, ich bitte dich, reich mir die Hand und hilf mir heraus.« – »Mein Sohn,« antwortete der afrikanische Zauberer, »gib mir zuvor die Lampe, sie könnte dir hinderlich sein.« – »Verzeih, lieber Oheim,« sagte Alaeddin, »sie hindert mich nicht; ich werde sie dir geben, sobald ich oben bin.« Der afrikanische Zauberer bestand darauf, daß Alaeddin ihm die Lampe einhändigen sollte, ehe er ihn aus der Höhle herauszöge, und Alaeddin, der die Lampe mit all den Früchten, die er zu sich gesteckt, verpackt hatte, weigerte sich durchaus, sie ihm zu geben, bevor er aus der Höhle wäre. Da geriet der afrikanische Zauberer vor Ärger über die Widerspenstigkeit des jungen Menschen in schreckliche Wut, warf etwas von seinem Rauchwerk in das Feuer, das er sorgfältig unterhalten hatte, und kaum hatte er zwei Zauberworte gesprochen, als der Stein, welcher als Deckel zur Eingangsöffnung der Höhle diente, sich von selbst wieder, nebst der Erde darüber, an seine Stelle rückte, so daß alles wieder in denselben Stand kam, wie vor der Ankunft des arabischen Zauberers und Alaeddins. Der afrikanische Zauberer war in der Tat kein Bruder des Schneiders Mustafa, wofür er sich ausgegeben hatte, und somit auch nicht Alaeddins Oheim. Er war wirklich aus Afrika gebürtig, und nachdem er sich etwa vierzig Jahre lang mit Zaubereien, mit der Punktierkunst, mit Räucheropfern und der Lektüre von Zauberbüchern beschäftigt hatte, war er endlich auf die Entdeckung gekommen, daß es eine Wunderlampe in der Welt gebe, deren Besitz ihn mächtiger als alle Könige der Erde machen würde. Aber obschon die Lampe sich ganz gewiß an dem bewußten Orte befand, so war es ihm doch nicht gestattet, sie selbst zu holen oder persönlich in das unterirdische Gewölbe einzutreten. Es mußte ein\nENDINPUT\nBEGININSTRUCTION Wer ist Mustafa? ENDINCSTRUCTION ASSISTANT:",
+  "raw": true,
+  "stream": false,
+  "options":{
+    "temperature": 0.1,
+    "top_k": 100
+  }
+}
+
+###
+# @prompt question
+POST http://{{host}}/api/generate HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "model": "llama2",
+  "prompt": ,
+  "raw": true,
+  "stream": false,
+  "options":{
+    "temperature": 0.1,
+    "top_k": 100
+  }
+}

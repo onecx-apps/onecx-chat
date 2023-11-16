@@ -28,10 +28,6 @@ helm upgrade --install --force onecx-chat-svc -n genai --create-namespace ./onec
 helm upgrade --install --force onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
 
 
-#update route 53 to loadbalancers for qdrant and ollama if required
-https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z04691503R1QKP3NPCK74
-
-
 #check connection
 http://llama2.one-cx.org:8000/
 
@@ -46,7 +42,7 @@ add policy "genai-dev-admin-policy" to
 https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleUp-role-6zjp1ufz?section=permissions
 https://us-east-1.console.aws.amazon.com/iamv2/home#/roles/details/genaiScaleDown-role-rzktzgl7?section=permissions
 
-#set right clusterName in code of both (genaiScaleUp and genaiScaleDown Lambdas)
+#set right clusterName in code of both (genaiScaleUp and genaiScaleDown Lambdas) -> see aws/lambda/lambda_function_scale_up / lambda_function_scale_down
 
 
 #set permission to access s3 bucket for document embedding
