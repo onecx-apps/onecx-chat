@@ -1,0 +1,102 @@
+# This AWS SAM template has been generated from your function's 
+# configuration. If your function has one or more triggers, note 
+# that the AWS resources associated with these triggers aren't fully 
+# specified in this template and include placeholder values.Open this template 
+# in AWS Application Composer or your favorite IDE and modify 
+# it to specify a serverless application with other AWS resources. 
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  genaiScaleUp:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 30
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      EphemeralStorage:
+        Size: 512
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: cron(30 7 ? * MON-FRI *)
+        Api1:
+          Type: Api
+          Properties:
+            Path: /MyResource
+            Method: ANY
+        Api2:
+          Type: Api
+          Properties:
+            Path: /genaiScaleUp
+            Method: ANY
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto
+      SnapStart:
+        ApplyOn: None
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Action:
+                - eks:UpdateClusterVersion
+                - eks:ListTagsForResource
+                - eks:UpdateAddon
+                - eks:ListAddons
+                - eks:UpdateClusterConfig
+                - eks:DescribeAddon
+                - eks:UpdateNodegroupVersion
+                - eks:DescribeNodegroup
+                - eks:AssociateEncryptionConfig
+                - eks:ListUpdates
+                - eks:ListIdentityProviderConfigs
+                - eks:ListNodegroups
+                - eks:UntagResource
+                - eks:CreateNodegroup
+                - eks:DeregisterCluster
+                - eks:DeleteCluster
+                - eks:CreateFargateProfile
+                - eks:ListFargateProfiles
+                - eks:DeleteAddon
+                - eks:DeleteNodegroup
+                - eks:DescribeUpdate
+                - eks:TagResource
+                - eks:AccessKubernetesApi
+                - eks:CreateAddon
+                - eks:UpdateNodegroupConfig
+                - eks:DescribeCluster
+                - eks:AssociateIdentityProviderConfig
+              Effect: Allow
+              Resource:
+                - arn:aws:eks:*:728986473007:nodegroup/genai-dev*/*/*
+                - arn:aws:eks:*:728986473007:cluster/genai-dev*
+                - arn:aws:eks:*:728986473007:addon/*/*/*
+              Sid: VisualEditor0
+            - Action:
+                - eks:DescribeAddonConfiguration
+                - eks:ListClusters
+                - eks:DescribeAddonVersions
+                - eks:RegisterCluster
+                - eks:CreateCluster
+              Effect: Allow
+              Resource: '*'
+              Sid: VisualEditor1
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+              Resource: arn:aws:logs:us-east-1:728986473007:*
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource:
+                - >-
+                  arn:aws:logs:us-east-1:728986473007:log-group:/aws/lambda/genaiScaleUp:*

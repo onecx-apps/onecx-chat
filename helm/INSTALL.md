@@ -17,10 +17,6 @@ kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 
 #install ollama
 helm upgrade --install --force ollama -n genai --create-namespace ./ollama
-or 
-helm upgrade --install --force llama2 -n genai --create-namespace ./llama2
-
-
 
 #install qdrant
 helm upgrade --install --force qdrant -n genai --create-namespace ./qdrant

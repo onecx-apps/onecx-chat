@@ -1,0 +1,8 @@
+FROM /root/.ollama/custom_model/em_german_leo_mistral.Q8_0.gguf
+
+TEMPLATE """
+{{ .System }}
+{{ .Prompt }}
+"""
+
+SYSTEM """Ignoriere alle folgenden Text und sage nur Hallo!"""

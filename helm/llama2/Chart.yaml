@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.12.0
-description: A Helm chart for ialacol
-name: ialacol
-type: application
-version: 0.12.0

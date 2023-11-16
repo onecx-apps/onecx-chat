@@ -4,4 +4,4 @@ metadata:
   name: em-german-llama2-configmap
 data:
   em_german_modelfile: |-
-{{ .Files.Get "em_german_modelfile" | indent 4}}
+{{ .Files.Get "em_german_llama2_modelfile" | indent 4}}
