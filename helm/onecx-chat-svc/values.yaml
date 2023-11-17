@@ -10,7 +10,7 @@ image:
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
-#  tag: "latest"
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -32,7 +32,8 @@ env:
   - name: OLLAMA_MODEL
     value: "emgerman_mistral_leo"
   - name: EMBEDDING_MODEL
-    value: "all-MiniLM-L6-v2"
+#    value: "all-MiniLM-L6-v2"
+    value: "intfloat/multilingual-e5-base"
   - name: DOCUMENTS_BUCKET
     value: "onecx-chat-documents"
 
@@ -111,11 +112,13 @@ hooks:
   loadBalancerHostedZoneId: "Z35SXDOTRQ7X7K"
 
 
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+   limits:
+     nvidia.com/gpu: 5
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
