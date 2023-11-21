@@ -1,0 +1,8 @@
+FROM /root/.ollama/custom_model/llama-2-13b-german-assistant-v4.Q5_K_M.gguf
+
+TEMPLATE """
+### System: {{ .System }}
+### User: {{ .Prompt }}
+### Assistant:
+"""
+

@@ -30,10 +30,19 @@ env:
   - name: OLLAMA_PORT
     value: "80"
   - name: OLLAMA_MODEL
-    value: "emgerman_mistral_leo"
+#    value: "llama2"
+#    value: "emgerman_mistral_leo"
+    value: "german_llama2_assistant"
+  - name: OLLAMA_MODEL_VERSION
+    value: "latest"
+#    value: "13b-chat-q4_0"          
+  - name: Q_A_SYSTEM_MESSAGE
+    value: "Du bist ein hilfreicher Assistent. Im folgenden wird eine passende Antwortmöglichkeit zu einer Frage gesucht. "
   - name: EMBEDDING_MODEL
-#    value: "all-MiniLM-L6-v2"
-    value: "intfloat/multilingual-e5-base"
+    value: "all-MiniLM-L6-v2"
+#    value: "intfloat/multilingual-e5-base"
+  - name: AMOUNT_SIMILARITY_SEARCH_RESULTS
+    value: "5"
   - name: DOCUMENTS_BUCKET
     value: "onecx-chat-documents"
 
