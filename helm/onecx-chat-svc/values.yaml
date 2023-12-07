@@ -35,11 +35,17 @@ env:
 #    value: "german_llama2_assistant"
     value: "leo_hessianai"
   - name: OLLAMA_MODEL_VERSION
+#    value: "13b-chat-q4_0"
     value: "latest"
-#    value: "13b-chat-q4_0"        
-#  - name: Q_A_SYSTEM_MESSAGE
-#    value: "Du bist ein ehrlicher, respektvoller und ehrlicher Assistent. Zur Beantwortung der Frage nutzt du nur den Text, welcher zwischen <INPUT> und </INPUT> steht! Findest du keine Informationen im bereitgesetllten Text, so antwortest du mit 'Ich habe dazu keine Informationen' "
-  ### uses no template creation in svc, instead whole template needs to be provided as prompt text and OLLAMA_RAW_MODE needs to be True
+
+  - name: Q_A_SYSTEM_MESSAGE
+    value: "You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question.\n
+    If you don't know the answer to a question, please don't share false information.\n 
+    Only use the information you get from the retrieved context. If you can not find any information in the context, than say 'No information provided'.\n
+    Use three sentences maximum and keep the answer concise.\n
+    If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct.\n
+    Please answer in the same language as the user asked the question.\n"
+  ### uses no template creation in svc, instead whole template needs to be provided as prompt text additionally OLLAMA_RAW_MODE needs to be True
   - name: RAW_PROMPT
     value: "False"
   ### template of ollama is used if False otherwise it will use template of the svc in case RAW_PROMPT is set to False
@@ -51,8 +57,8 @@ env:
     value: "True"
   - name: EMBEDDING_MODEL
 #    value: "all-MiniLM-L6-v2"
-    value: "intfloat/multilingual-e5-base"
 #    value: "embed-multilingual-v3.0"
+    value: "intfloat/multilingual-e5-base"
   - name: AMOUNT_SIMILARITY_SEARCH_RESULTS
     value: "20"
   - name: DOCUMENTS_BUCKET
