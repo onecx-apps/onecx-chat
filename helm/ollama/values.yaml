@@ -7,13 +7,11 @@ replicaCount: 1
 image:
 # gpu not working with default image ollama:ollama
   repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
-#  repository: ollama/ollama
+##  repository: ollama/ollama
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-#  tag: "0.1.9-gpu"
-#  tag: "0.1.9-gpu-runtime"
-  tag: "0.1.9-gpu-base"
-#  tag: "latest"
+  tag: "0.1.9-gpu"
+##  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -34,7 +32,9 @@ postInstallCmd: |
 
   #FILE_PATH=/root/.ollama/custom_model/em_german_13b_v01.Q4_K_M.gguf
   #FILE_PATH=/root/.ollama/custom_model/em_german_leo_mistral.Q8_0.gguf
-  FILE_PATH=/root/.ollama/custom_model/llama-2-13b-german-assistant-v4.Q5_K_M.gguf
+  #FILE_PATH=/root/.ollama/custom_model/llama-2-13b-german-assistant-v4.Q5_K_M.gguf
+  FILE_PATH=/root/.ollama/custom_model/leo-hessianai-13b-chat.Q8_0.gguf
+  
 
   # Check if the file exists
   if [ -e "$FILE_PATH" ]; then
@@ -43,7 +43,9 @@ postInstallCmd: |
     # Download the file if it doesn't exist
     #huggingface-cli download TheBloke/em_german_13b_v01-GGUF em_german_13b_v01.Q4_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
     #huggingface-cli download TheBloke/em_german_leo_mistral-GGUF em_german_leo_mistral.Q8_0.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
-    huggingface-cli download TheBloke/llama-2-13B-German-Assistant-v4-GGUF llama-2-13b-german-assistant-v4.Q5_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+    #huggingface-cli download TheBloke/llama-2-13B-German-Assistant-v4-GGUF llama-2-13b-german-assistant-v4.Q5_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+    huggingface-cli download TheBloke/leo-hessianai-13B-chat-GGUF leo-hessianai-13b-chat.Q8_0.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+
 
     echo "File downloaded successfully."
   fi
@@ -52,19 +54,21 @@ postInstallCmd: |
   ollama rm emgerman_llama2
   ollama rm emgerman_mistral_leo
   ollama rm german_llama2_assistant
+  ollama rm leo_hessianai
   
   
   echo "Pull models"
   #ollama pull llama2:latest
   #ollama pull llama2:13b
-  ollama pull llama2:13b-chat-q4_0
+  #ollama pull llama2:13b-chat-q4_0
   #ollama pull llama2:70b
 
 
   echo "Create models by modelfile"
   #ollama create emgerman_llama2 -f /opt/llm/em_german_modelfile
   #ollama create emgerman_mistral_leo -f /opt/llm/em_leo_mistral_modelfile
-  ollama create german_llama2_assistant -f /opt/llm/german_llama2_assistant_modelfile
+  #ollama create german_llama2_assistant -f /opt/llm/german_llama2_assistant_modelfile
+  ollama create leo_hessianai -f /opt/llm/leo_hessianai_modelfile
   
   echo "Model created"
 
@@ -174,7 +178,8 @@ volumes:
     configMap:
 #      name: em-german-llama2-configmap
 #      name: em-leo-mistral-configmap
-      name: german-llama2-assistant-configmap
+#      name: german-llama2-assistant-configmap
+      name: leo-hessianai-configmap
 
 # Additional volumeMounts on the output Deployment definition. ollama:/root/.ollama
 volumeMounts:

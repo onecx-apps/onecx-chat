@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: leo-hessianai-configmap
+data:
+  leo_hessianai_modelfile: |-
+{{ .Files.Get "leo_hessianai_modelfile" | indent 4}}
