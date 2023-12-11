@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "onecx-chat-svc.fullname" . }}
+  name: {{ include "onecx-ai-svc.fullname" . }}
   labels:
-    {{- include "onecx-chat-svc.labels" . | nindent 4 }}
+    {{- include "onecx-ai-svc.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "onecx-chat-svc.fullname" . }}
+    name: {{ include "onecx-ai-svc.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

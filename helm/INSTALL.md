@@ -38,8 +38,8 @@ helm upgrade --install --force ollama -n genai --create-namespace ./ollama
 #install qdrant
 helm upgrade --install --force qdrant -n genai --create-namespace ./qdrant
 
-#install onecx-chat-svc
-helm upgrade --install --force onecx-chat-svc -n genai --create-namespace ./onecx-chat-svc
+#install onecx-ai-svc
+helm upgrade --install --force onecx-ai-svc -n genai --create-namespace ./onecx-ai-svc
 
 #install onecx-chat-ui
 helm upgrade --install --force onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui

@@ -18,7 +18,7 @@ fullnameOverride: ""
 # Define environment variables
 env:
   - name: CHAT_URL
-    value: "onecx-chat-svc"
+    value: "onecx-ai-svc"
   - name: CHAT_PORT
     value: "80"
 

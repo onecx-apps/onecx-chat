@@ -1,12 +1,12 @@
-# Default values for onecx-chat-svc.
+# Default values for onecx-ai-svc.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: ghcr.io/onecx-apps/onecx-chat-svc
-#  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-chat-svc
+  repository: ghcr.io/onecx-apps/onecx-ai-svc
+  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -50,7 +50,7 @@ env:
     value: "False"
   ### template of ollama is used if False otherwise it will use template of the svc in case RAW_PROMPT is set to False
   - name: OLLAMA_RAW_MODE
-    value: "False"
+    value: "True"
   - name: COHERE_API_KEY
     value: "y4CX8otjHckAKf6AXGFCz3YyQFI6TWaNNg1eGw5y"
   - name: ACTIVATE_RERANKER
@@ -134,7 +134,7 @@ hooks:
   hostedZoneId: "Z04691503R1QKP3NPCK74"
   recordSetName: "chat-svc.one-cx.org"
   namespace: "genai"
-  releaseName: "onecx-chat-svc"
+  releaseName: "onecx-ai-svc"
   region: "us-east-1"
   loadBalancerHostedZoneId: "Z35SXDOTRQ7X7K"
 

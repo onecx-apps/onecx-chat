@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "onecx-chat-svc.fullname" . }}
+  name: {{ include "onecx-ai-svc.fullname" . }}
   labels:
-    {{- include "onecx-chat-svc.labels" . | nindent 4 }}
+    {{- include "onecx-ai-svc.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "onecx-chat-svc.selectorLabels" . | nindent 6 }}
+      {{- include "onecx-ai-svc.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "onecx-chat-svc.labels" . | nindent 8 }}
+        {{- include "onecx-ai-svc.labels" . | nindent 8 }}
 	{{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "onecx-chat-svc.serviceAccountName" . }}
+      serviceAccountName: {{ include "onecx-ai-svc.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

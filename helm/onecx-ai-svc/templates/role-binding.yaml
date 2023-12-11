@@ -5,7 +5,7 @@ metadata:
   namespace: "{{ .Release.Namespace }}"
 subjects:
   - kind: ServiceAccount
-    name: {{ include "onecx-chat-svc.serviceAccountName" . }}
+    name: {{ include "onecx-ai-svc.serviceAccountName" . }}
 roleRef:
   kind: Role
   name: update-route53
