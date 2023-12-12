@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: em-leo-mistral-configmap
-data:
-  em_leo_mistral_modelfile: |-
-{{ .Files.Get "em_leo_mistral_modelfile" | indent 4}}

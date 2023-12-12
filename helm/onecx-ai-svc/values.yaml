@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/onecx-apps/onecx-ai-svc
-  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
+#  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -32,7 +32,7 @@ env:
   - name: OLLAMA_MODEL
 #    value: "llama2"
 #    value: "emgerman_mistral_leo"
-#    value: "german_llama2_assistant"
+#    value: "mixtral_8x7b"
     value: "leo_hessianai"
   - name: OLLAMA_MODEL_VERSION
 #    value: "13b-chat-q4_0"

@@ -8,7 +8,7 @@ metadata:
     topology.kubernetes.io/zone: us-east-1a
 spec:
   capacity:
-    storage: 100Gi
+    storage: 200Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce

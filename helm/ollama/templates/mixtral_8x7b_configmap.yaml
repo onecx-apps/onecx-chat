@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mixtral-8x7b-configmap
+data:
+  mixtral_8x7b_modelfile: |-
+{{ .Files.Get "mixtral_8x7b_modelfile" | indent 4}}

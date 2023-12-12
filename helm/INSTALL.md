@@ -1,6 +1,6 @@
 # create two ebs volumes and update pv.yaml´s -> volumeID if no volume exists already: 
-# llama2
-aws ec2 create-volume --availability-zone us-east-1a --size 24
+# ollama
+aws ec2 create-volume --availability-zone us-east-1a --size 200
 # qdrant
 aws ec2 create-volume --availability-zone us-east-1a --size 10
 

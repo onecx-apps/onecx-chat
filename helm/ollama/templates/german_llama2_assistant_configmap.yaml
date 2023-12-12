@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: german-llama2-assistant-configmap
-data:
-  german_llama2_assistant_modelfile: |-
-{{ .Files.Get "german_llama2_assistant_modelfile" | indent 4}}
