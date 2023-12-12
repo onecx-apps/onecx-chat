@@ -45,10 +45,8 @@ env:
     Use three sentences maximum and keep the answer concise.\n
     If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct.\n
     Please answer in the same language as the user asked the question.\n"
-  ### uses no template creation in svc, instead whole template needs to be provided as prompt text additionally OLLAMA_RAW_MODE needs to be True
-  - name: RAW_PROMPT
-    value: "False"
-  ### template of ollama is used if False otherwise it will use template of the svc in case RAW_PROMPT is set to False
+
+  ### template of ollama is used if False otherwise it will use template of the svc 
   - name: OLLAMA_RAW_MODE
     value: "True"
   - name: COHERE_API_KEY
