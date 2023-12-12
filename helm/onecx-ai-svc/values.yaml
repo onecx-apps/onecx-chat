@@ -132,7 +132,7 @@ hooks:
   postInstall:
     enabled: true
   hostedZoneId: "Z04691503R1QKP3NPCK74"
-  recordSetName: "chat-svc.one-cx.org"
+  recordSetName: "ai-svc.one-cx.org"
   namespace: "genai"
   releaseName: "onecx-ai-svc"
   region: "us-east-1"
