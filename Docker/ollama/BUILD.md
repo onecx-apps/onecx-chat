@@ -1,3 +1,5 @@
+GPU support was not working with ollama 0.1.9 therefore own build was used.
+
 checkout ollama from: https://github.com/jmorganca/ollama.git
 
 docker build -t ollama:latest -f ./Dockerfile.gpu .

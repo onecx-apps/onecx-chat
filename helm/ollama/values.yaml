@@ -5,13 +5,13 @@
 replicaCount: 1
 
 image:
-# gpu not working with default image ollama:ollama
+# gpu not working with default image ollama:ollama version 0.1.9
   repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
-##  repository: ollama/ollama
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "0.1.9-gpu"
-##  tag: "latest"
+#  repository: ollama/ollama
+#  tag: "latest"
+  pullPolicy: Always
+  
 
 imagePullSecrets: []
 nameOverride: ""
