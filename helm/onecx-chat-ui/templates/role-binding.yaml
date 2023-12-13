@@ -8,5 +8,5 @@ subjects:
     name: {{ include "onecx-chat-ui.serviceAccountName" . }}
 roleRef:
   kind: Role
-  name: update-route53
+  name: update-route53-chat-ui
   apiGroup: rbac.authorization.k8s.io

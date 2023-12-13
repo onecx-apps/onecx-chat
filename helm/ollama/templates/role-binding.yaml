@@ -8,5 +8,5 @@ subjects:
     name: {{ include "ollama.serviceAccountName" . }}
 roleRef:
   kind: Role
-  name: update-route53
+  name: update-route53-ollama
   apiGroup: rbac.authorization.k8s.io

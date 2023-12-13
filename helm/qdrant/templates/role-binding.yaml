@@ -8,5 +8,5 @@ subjects:
     name: {{ include "qdrant.serviceAccountName" . }}
 roleRef:
   kind: Role
-  name: update-route53
+  name: update-route53-qdrant
   apiGroup: rbac.authorization.k8s.io
