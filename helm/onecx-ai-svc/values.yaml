@@ -10,6 +10,7 @@ image:
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
+  
 
 
 imagePullSecrets: []
@@ -25,6 +26,8 @@ env:
     value: "qdrant"
   - name: QDRANT_PORT
     value: "6333"
+  - name: QDRANT_COLLECTION_NAME
+    value: "ollama"    
   - name: OLLAMA_URL
     value: "ollama"
   - name: OLLAMA_PORT

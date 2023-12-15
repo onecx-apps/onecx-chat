@@ -84,8 +84,11 @@ https://github.com/NVIDIA/k8s-device-plugin#running-gpu-jobs
 
 
 # Scaling up and down the infrastructure
-https://zjwdcv4me1.execute-api.us-east-1.amazonaws.com/genaiScaleUp
+
+api gateway uses basic_authorizer lambda for basic authentication
+
+https://00xng0wt39.execute-api.us-east-1.amazonaws.com/dev/genaiScaleUp
  
  
 The server is getting  automatically scaled down at 15:50 and 17:50 every day or with manually with the following url
-https://zjwdcv4me1.execute-api.us-east-1.amazonaws.com/genaiScaleDown
+https://00xng0wt39.execute-api.us-east-1.amazonaws.com/dev/genaiScaleDown
