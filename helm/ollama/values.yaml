@@ -6,9 +6,10 @@ replicaCount: 1
 
 image:
 # gpu not working with default image ollama:ollama version 0.1.9
-  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
-  tag: "0.1.9-gpu"
-#  repository: ollama/ollama
+#  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
+#  tag: "0.1.9-gpu"
+  repository: ollama/ollama
+  tag: "0.1.16"
 #  tag: "latest"
   pullPolicy: Always
   
