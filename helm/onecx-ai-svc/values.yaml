@@ -23,7 +23,7 @@ env:
   - name: CLOUD_PROVIDER
     value: "aws"
   - name: QDRANT_URL
-    value: "qdrant"
+    value: "http://qdrant"
   - name: QDRANT_PORT
     value: "6333"
   - name: QDRANT_COLLECTION_NAME
