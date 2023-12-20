@@ -9,8 +9,8 @@ image:
 #  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/ollama
 #  tag: "0.1.9-gpu"
   repository: ollama/ollama
-  tag: "0.1.13"
-#  tag: "latest"
+#  tag: "0.1.13"
+  tag: "latest"
   pullPolicy: Always
   
 
