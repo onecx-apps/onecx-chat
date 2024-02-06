@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
 #  repository: ghcr.io/onecx-apps/onecx-ai-ui
-  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-ui
+  repository: public.ecr.aws/l1c8d5b3/onecx-ai-ui
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
