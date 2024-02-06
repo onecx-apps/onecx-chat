@@ -20,7 +20,9 @@ fullnameOverride: ""
 
 # Define environment variables
 
-env: []
+env:
+- name: PYTORCH_CUDA_ALLOC_CONF
+  value: "max_split_size_mb:512"
 # gpu not working with default image ollama:ollama
 #  - name: PATH
 #    value: /usr/local/nvidia/bin:/usr/local/nvidia/lib64:/usr/bin:/usr/sbin:/bin:/sbin
