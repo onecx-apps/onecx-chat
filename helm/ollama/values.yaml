@@ -31,55 +31,35 @@ env: []
 postInstallCmd: |
   #!/bin/sh
   
-  FILE_PATH=/root/.ollama/custom_model/mixtral-8x7b-v0.1.Q5_K_M.gguf
-  
-  # Check if the file exists
-  if [ -e "$FILE_PATH" ]; then
-    echo "File already exists. Skipping download."
-  else
-    # Download the file if it doesn't exist
-    huggingface-cli download TheBloke/Mixtral-8x7B-v0.1-GGUF mixtral-8x7b-v0.1.Q5_K_M.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
-    
-    echo "File downloaded successfully."
-
-    echo "Remove old models"
-    ollama rm mixtral_8x7b
-    
-    echo "Create models by modelfile"
-    ollama create mixtral_8x7b -f /opt/llm/mixtral_8x7b/mixtral_8x7b_modelfile
-    
-    echo "Model created"
-  
-  fi
-
   ######################################################################################################################################################################
 
-  FILE_PATH=/root/.ollama/custom_model/leo-hessianai-13b-chat.Q8_0.gguf
+  #FILE_PATH=/root/.ollama/custom_model/leo-hessianai-13b-chat.Q8_0.gguf
 
   # Check if the file exists
-  if [ -e "$FILE_PATH" ]; then
-    echo "File already exists. Skipping download."
-  else
-    # Download the file if it doesn't exist
-    huggingface-cli download TheBloke/leo-hessianai-13B-chat-GGUF leo-hessianai-13b-chat.Q8_0.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+  #if [ -e "$FILE_PATH" ]; then
+  #  echo "File already exists. Skipping download."
+  #else
+  #  # Download the file if it doesn't exist
+  #  huggingface-cli download TheBloke/leo-hessianai-13B-chat-GGUF leo-hessianai-13b-chat.Q8_0.gguf --local-dir /root/.ollama/custom_model --local-dir-use-symlinks False
+  #
+  #  echo "File downloaded successfully."
 
-    echo "File downloaded successfully."
+   # echo "Remove old models"
+   # ollama rm leo_hessianai
 
-    echo "Remove old models"
-    ollama rm leo_hessianai
+    #echo "Create models by modelfile"
+    #ollama create leo_hessianai -f /opt/llm/leo-hessianai/leo_hessianai_modelfile
 
-    echo "Create models by modelfile"
-    ollama create leo_hessianai -f /opt/llm/leo-hessianai/leo_hessianai_modelfile
-
-    echo "Model created"
+    #echo "Model created"
   
-  fi
+  #fi
   
   echo "Pull standard models"
   #ollama pull llama2:latest
   #ollama pull llama2:13b
   #ollama pull llama2:13b-chat-q4_0
   #ollama pull llama2:70b
+  ollama pull mixtral
   
   
 
@@ -183,9 +163,6 @@ volumes:
   - name: leo-hessianai-volume
     configMap:
       name: leo-hessianai-configmap
-  - name: mixtral-8x7b-volume
-    configMap:
-      name: mixtral-8x7b-configmap      
 
 # Additional volumeMounts on the output Deployment definition. ollama:/root/.ollama
 volumeMounts:
@@ -194,8 +171,6 @@ volumeMounts:
 #    readOnly: true
   - name: leo-hessianai-volume
     mountPath: "/opt/llm/leo-hessianai"
-  - name: mixtral-8x7b-volume
-    mountPath: "/opt/llm/mixtral_8x7b"    
 
 nodeSelector: {}
 

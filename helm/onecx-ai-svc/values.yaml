@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/onecx-apps/onecx-ai-svc
-#  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
+#  repository: ghcr.io/onecx-apps/onecx-ai-svc
+  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -35,42 +35,24 @@ env:
   - name: OLLAMA_MODEL
 #    value: "llama2"
 #    value: "emgerman_mistral_leo"
-#    value: "mixtral_8x7b"
-    value: "leo_hessianai"
+    value: "mixtral"
+#    value: "leo_hessianai"
   - name: OLLAMA_MODEL_VERSION
 #    value: "13b-chat-q4_0"
     value: "latest"
 
   - name: Q_A_SYSTEM_MESSAGE
 #    value: "<|im_start|>system\nYou are a helpful chat assistant for an question and answering session. The user message contains the QUESTION and CONTEXT, which is surround by '***'. Use only this CONTEXT to answer the question. Your response should only contain the answer without repeating the used CONTEXT. If the CONTEXT is not accurate enough then simply say that you can not answer it with the given CONTEXT.<|im_end|>\n"
-    value: "<|im_start|>system\nYou are a helpful chat assistant for an question and answering session. The user message contains a QUESTION and a CONTEXT\n
-            If no QUESTION is provided, tell the user to provide one! \n
-            The provided CONTEXT is enclosed '***' \n
-            Use only the provided CONTEXT to answer the QUESTION.\n
-            
-            
-            Here is an example user request. \n
-	          '''
-            QUESTION: Ich höre keinen Ton. Wie kann ich das Problem lösen?
-            CONTEXT: ***
-	          Überprüfen Sie die Lautsprecheranschlüsse. 
-            1. Testen Sie die Lautsprecher an einem anderen Gerät, um sicherzustellen, dass sie funktionieren. 
-            2. Benutzen Sie die Lautsprecher an einem anderen Gerät, um sicherzustellen, dass sie funktionieren.
-            3. Prüfen Sie, ob die Lautstärke hoch genug eingestellt ist.
-            ***
-            '''
 
-            This should result into simimular ANSWER like:
-            '''
-            Um das Problem zu beheben habe ich folgende mögliche Lösungen gefunden:
-          	  - Überprüfen Sie die Lautsprecheranschlüsse. Testen Sie die Lautsprecher an einem anderen Gerät, um sicherzustellen, dass sie funktionieren.
-	            - Benutzen Sie die Lautsprecher an einem anderen Gerät, um sicherzustellen, dass sie funktionieren.
-              - Prüfen Sie, ob die Lautstärke hoch genug eingestellt ist.
-            '''
+    value: "<INST>nYou be are a helpful assistant for summarizing the CONTEXT in regards to the QUESTION.
+            The user message contains a QUESTION and a CONTEXT
+            If no QUESTION is provided, tell the user to provide one! 
+            The provided CONTEXT is enclosed '***' 
+            Use only the provided CONTEXT for summarization.
+            Give maximum 3 short sentences as summarization.
+            </INST>"
 
-            For each solution step use a new line and start with a '-'
 
-            <|im_end|>\n"
 
   ### template of ollama is used if False otherwise it will use template of the svc 
   - name: OLLAMA_RAW_MODE

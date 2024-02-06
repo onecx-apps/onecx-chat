@@ -41,8 +41,8 @@ helm upgrade --install --force qdrant -n genai --create-namespace ./qdrant
 #install onecx-ai-svc
 helm upgrade --install --force onecx-ai-svc -n genai --create-namespace ./onecx-ai-svc
 
-#install onecx-chat-ui
-helm upgrade --install --force onecx-chat-ui -n genai --create-namespace ./onecx-chat-ui
+#install onecx-ai-ui
+helm upgrade --install --force onecx-ai-ui -n genai --create-namespace ./onecx-ai-ui
 
 
 #check connection
