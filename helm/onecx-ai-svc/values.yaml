@@ -71,6 +71,8 @@ env:
     value: "5"
   - name: SCORE_THREASHOLD
     value: ".81"
+  - name: IMAGES_LOCATION
+    value: "https://www.computerhope.com/jargon/u/"
   - name: DOCUMENTS_BUCKET
     value: "onecx-chat-documents"
 
