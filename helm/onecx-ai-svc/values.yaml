@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
 #  repository: ghcr.io/onecx-apps/onecx-ai-svc
-  repository: public.ecr.aws/l1c8d5b3/onecx-ai-svc
+  repository: 728986473007.dkr.ecr.us-east-1.amazonaws.com/onecx/onecx-ai-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -57,18 +57,17 @@ env:
   ### template of ollama is used if False otherwise it will use template of the svc 
   - name: OLLAMA_RAW_MODE
     value: "True"
-  - name: COHERE_API_KEY
-    value: "y4CX8otjHckAKf6AXGFCz3YyQFI6TWaNNg1eGw5y"
+#  - name: COHERE_API_KEY
+#    value: ""
   - name: ACTIVATE_RERANKER
-#    value: "True"
-    value: "False"
+    value: "True"
   - name: EMBEDDING_MODEL
 #    value: "all-MiniLM-L6-v2"
 #    value: "embed-multilingual-v3.0"
     value: "intfloat/multilingual-e5-base"
 #    value: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
   - name: AMOUNT_SIMILARITY_SEARCH_RESULTS
-    value: "5"
+    value: "20"
   - name: SCORE_THREASHOLD
     value: ".81"
   - name: IMAGES_LOCATION
