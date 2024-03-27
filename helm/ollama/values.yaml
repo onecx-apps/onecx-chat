@@ -62,6 +62,7 @@ postInstallCmd: |
   #ollama pull llama2:13b-chat-q4_0
   #ollama pull llama2:70b
   ollama pull mixtral
+  ollama pull llava:34b
   
   
 
