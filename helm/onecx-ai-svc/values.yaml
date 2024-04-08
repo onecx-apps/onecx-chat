@@ -29,9 +29,7 @@ env:
   - name: QDRANT_COLLECTION_NAME
     value: "mcd"    
   - name: OLLAMA_URL
-    value: "ollama"
-  - name: OLLAMA_PORT
-    value: "80"
+    value: "http://ollama"
   - name: OLLAMA_MODEL
 #    value: "llama2"
 #    value: "emgerman_mistral_leo"
