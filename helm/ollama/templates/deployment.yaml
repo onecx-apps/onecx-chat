@@ -41,7 +41,7 @@ spec:
           ports:
           {{- range .Values.service.ports }}
             - name: {{ .name }}
-              containerPort: {{ .targetPort }}
+              containerPort: 11434
               protocol: {{ .protocol }}
           {{- end }}              
           livenessProbe:
@@ -72,6 +72,18 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+        - name: caddy-sidecar
+          image: caddy:latest
+          env:
+            {{ toYaml .Values.caddyenv | nindent 12 }}     
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 443
+              name: https
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy              
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

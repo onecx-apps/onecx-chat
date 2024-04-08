@@ -28,7 +28,11 @@ env:
 #    value: /usr/local/nvidia/bin:/usr/local/nvidia/lib64:/usr/bin:/usr/sbin:/bin:/sbin
 #  - name: LD_LIBRARY_PATH
 #    value: /usr/local/nvidia/lib64
-
+caddyenv:
+- name: CADDY_USERNAME
+  value: "API_KEY"
+- name: CADDY_PASSWORD_HASH #5a853800-fb13-4564-a098-a1fffb44a32e
+  value: "$2a$14$ZUZoeNPZ2Y0GgdxDOXSeaOE4wrAePYRaXkVSwB5Ndk1IeyChhzMRa"
 
 postInstallCmd: |
   #!/bin/sh
@@ -61,8 +65,10 @@ postInstallCmd: |
   #ollama pull llama2:13b
   #ollama pull llama2:13b-chat-q4_0
   #ollama pull llama2:70b
-  ollama pull mixtral
-  ollama pull llava:34b
+  
+  
+  #ollama pull mixtral
+  #ollama pull llava:34b
   
   
 
@@ -96,7 +102,7 @@ service:
   ports:
     - name: http
       port: 80
-      targetPort: 11434
+      targetPort: 80
       protocol: TCP
 
 livenessProbe:
@@ -166,6 +172,9 @@ volumes:
   - name: leo-hessianai-volume
     configMap:
       name: leo-hessianai-configmap
+  - name: caddy-config
+    configMap:
+      name: caddy-configmap      
 
 # Additional volumeMounts on the output Deployment definition. ollama:/root/.ollama
 volumeMounts:
