@@ -21,6 +21,8 @@ fullnameOverride: ""
 # Define environment variables
 
 env:
+#- name: OLLAMA_DEBUG
+#  value: "1"
 - name: PYTORCH_CUDA_ALLOC_CONF
   value: "max_split_size_mb:512"
 # gpu not working with default image ollama:ollama
@@ -100,9 +102,9 @@ securityContext: {}
 service:
   type: LoadBalancer
   ports:
-    - name: http
-      port: 80
-      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: http
       protocol: TCP
 
 livenessProbe:
@@ -200,3 +202,4 @@ hooks:
   releaseName: "ollama"
   region: "us-east-1"
   loadBalancerHostedZoneId: "Z35SXDOTRQ7X7K"
+  acmCertificateArn: "arn:aws:acm:us-east-1:728986473007:certificate/ecbebcf9-9a89-4f42-bb0b-141b413aa5eb"

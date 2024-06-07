@@ -31,7 +31,7 @@ spec:
               RELEASE_NAME={{ .Values.hooks.releaseName }}
               REGION={{ .Values.hooks.region }}
               LB_HOSTED_ZONE_ID={{ .Values.hooks.loadBalancerHostedZoneId }}
-
+              ACM_CERTIFICATE_ARN={{ .Values.hooks.acmCertificateArn }}
               
               # Fetch the Load Balancer IP
               attempt=0
@@ -40,7 +40,7 @@ spec:
 
                 # Check if the IP is not empty
                 if [ -n "$LOAD_BALANCER_HOSTNAME" ]; then
-                  echo "Load Balancer IP: $LOAD_BALANCER_HOSTNAME"
+                  echo "Load Balancer Hostname: $LOAD_BALANCER_HOSTNAME"
                   break  # Exit the loop if successful
                 else
                   echo "Attempt $((attempt + 1)): Failed to retrieve Load Balancer HOSTNAME."
@@ -55,15 +55,20 @@ spec:
                 exit 1
               fi              
 
-
-
               # Fetch the Load Balancer IP
               LOAD_BALANCER_HOSTNAME=$(kubectl get services -n $NAMESPACE $RELEASE_NAME -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+              LOAD_BALANCER_NAME=$(aws elb describe-load-balancers --query "LoadBalancerDescriptions[?DNSName=='$LOAD_BALANCER_HOSTNAME'].LoadBalancerName" --output text)
+              INSTANCE_PORT=$(aws elb describe-load-balancers --query "LoadBalancerDescriptions[?DNSName=='$LOAD_BALANCER_HOSTNAME'].ListenerDescriptions[0].Listener.InstancePort" --output text)
 
               # Check if the IP is not empty
               if [ -n "$LOAD_BALANCER_HOSTNAME" ]; then
-                echo "Load Balancer IP: $LOAD_BALANCER_HOSTNAME"
+                echo "Load Balancer Hostname: $LOAD_BALANCER_HOSTNAME"
+                echo "Load Balancer name: $LOAD_BALANCER_NAME"
 
+                aws elb delete-load-balancer-listeners --load-balancer-name $LOAD_BALANCER_NAME --load-balancer-ports {"80","443"}
+#                aws elb create-load-balancer-listeners --load-balancer-name $LOAD_BALANCER_NAME --listeners Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=$INSTANCE_PORT
+                aws elb create-load-balancer-listeners --load-balancer-name $LOAD_BALANCER_NAME --listeners Protocol=HTTPS,LoadBalancerPort=443,InstanceProtocol=HTTP,InstancePort=$INSTANCE_PORT,SSLCertificateId=$ACM_CERTIFICATE_ARN
+                
                 # Update Route 53 record set
                 aws route53 change-resource-record-sets \
                   --hosted-zone-id $HOSTED_ZONE_ID \
