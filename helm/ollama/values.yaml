@@ -105,6 +105,7 @@ service:
     - name: https
       port: 443
       targetPort: http
+#      targetPort: 11434
       protocol: TCP
 
 livenessProbe:

@@ -5,7 +5,7 @@ aws ec2 create-volume --availability-zone us-east-1a --size 200
 aws ec2 create-volume --availability-zone us-east-1a --size 10
 
 
-# take volume id and set it in pv.yaml files of llama2 and qdrant
+# take volume id and set it in pv.yaml files of ollama and qdrant
 
 # install storage-class
 kubectl apply -f storageclass.yaml
@@ -46,7 +46,7 @@ helm upgrade --install --force onecx-ai-ui -n genai --create-namespace ./onecx-a
 
 
 #check connection
-http://llama2.one-cx.org:8000/
+https://ollama.one-cx.org/
 
 http://qdrant.one-cx.org:6333/
 
