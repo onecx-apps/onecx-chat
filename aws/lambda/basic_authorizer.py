@@ -65,7 +65,7 @@ def is_valid_credentials(username, password):
     # In a real-world scenario, use a secure method for handling credentials.
     # This example uses a simple check for demonstration purposes.
     valid_username = 'genai'
-    valid_password = 'capgemini!'
+    valid_password = 'mySecretPassword!'
 
     return username == valid_username and password == valid_password
 
