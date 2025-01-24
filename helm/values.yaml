@@ -1,0 +1,13 @@
+deployment:
+  svc: true
+  bff: true
+  ui: true
+
+product:
+  info:
+    data:
+      description: "OneCX Chat"
+      imageUrl: ""
+      iconName: "lock"
+      displayName: "OneCX Chat"
+      basePath: "/chat"
