@@ -1,14 +1,11 @@
-name: Build helm chart
+name: Update helm chart dependencies
 
 on:
-  push:
-    branches:
-      - 'main'
-      - 'fix/[0-9]+.[0-9]+.x'
-    paths:
-      - 'helm/**'      
+  workflow_dispatch:
+  repository_dispatch:
+    types: [helm-update-deps]
 
 jobs:
-  helm:
-    uses: onecx-apps/ci-product/.github/workflows/build.yml@v1
+  release:
+    uses: onecx-apps/ci-product/.github/workflows/helm-update-deps.yml@v1
     secrets: inherit
