@@ -203,4 +203,4 @@ hooks:
   releaseName: "ollama"
   region: "us-east-1"
   loadBalancerHostedZoneId: "Z35SXDOTRQ7X7K"
-  acmCertificateArn: "arn:aws:acm:us-east-1:728986473007:certificate/ecbebcf9-9a89-4f42-bb0b-141b413aa5eb"
+  acmCertificateArn: "arn:aws:acm:us-east-1:728986473007:certificate/c4195861-b30b-49e5-b2b9-b9395cb3ae13"
